@@ -1,0 +1,9 @@
+{
+  "id": {"S": "1"},
+  "name": {"S": "user01"},
+  "name_kana": {"S": "user01"},
+  "disabled_at": {"S": "2023/04/01"},
+  "created_at": {"S": "2023/04/01"},
+  "updated_at": {"S": "2023/04/01"},
+  "deleted_at": {"S": "2023/04/01"}
+}

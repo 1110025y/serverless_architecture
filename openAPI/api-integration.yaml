@@ -1,0 +1,86 @@
+# HTTP API は、OpenAPI 3.0 定義ファイルを使用して定義
+# HTTP API は Lambdaプロキシと HTTPプロキシの統合のみをサポート
+
+openapi: "3.0.1"
+info:
+  title: "${title}"
+  version: "2023-04-16 08:31:33UTC"
+  description: "Swagger File of HTTP API"
+
+# schemes(方式)の指定
+schemes: 
+    - "https"
+    - "http"
+
+# APIの定義     
+paths:
+  /api/v1/first:
+    get:
+      # レスポンス(Lambdaが返すからいらない)
+      responses: {}
+      # Lambdaプロキシ統合の設定
+      x-amazon-apigateway-integration:
+        # componentsを参照 
+        $ref: '#/components/x-amazon-apigateway-integrations/first'
+        
+    put:
+      responses: {}
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/first'
+        
+  /api/v1/second:
+    get:
+      responses: {}
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/second'
+        
+    put:
+      responses: {}
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/second'
+        
+  /api/v1/third:
+    get:
+      responses: {}
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/third'
+        
+    put:
+      responses: {}
+      x-amazon-apigateway-integration:
+        $ref: '#/components/x-amazon-apigateway-integrations/third'
+        
+components:
+  x-amazon-apigateway-integrations:
+    first:
+      # ペイロードのバージョンを指定
+      payloadFormatVersion: "2.0"
+      # Lmbda統合の場合は"aws_proxy"、統合でない場合は"aws"
+      type: "aws_proxy"
+      # Lambda関数の呼び出しでは、値は"POST"である必要
+      httpMethod: "POST"
+      # Lambdaのarn指定
+      uri: "${first_lambda}"
+      # プライベート統合の場合は "VPC_LINK"、それ以外の場合は "INTERNET"
+      connectionType: "INTERNET"
+      # Lambda統合の場合は"when_no_match"、統合でない場合は"when_no_templates"
+      passthroughBehavior: "when_no_match"
+      
+    second:
+      payloadFormatVersion: "2.0"
+      type: "aws_proxy"
+      httpMethod: "POST"
+      uri: "${second_lambda}"
+      connectionType: "INTERNET"
+      passthroughBehavior: "when_no_match"
+      
+    third:
+      payloadFormatVersion: "2.0"
+      type: "aws_proxy"
+      httpMethod: "POST"
+      uri: "${third_lambda}"
+      connectionType: "INTERNET"
+      passthroughBehavior: "when_no_match"
+      
+x-amazon-apigateway-importexport-version: "1.0"
+
