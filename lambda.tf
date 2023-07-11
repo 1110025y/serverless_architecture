@@ -13,9 +13,7 @@ locals {
       description   = "First for Lambda"
       variables = {
         ENV           = var.environment,
-        DB_TABLE_NAME = "example",
-        ZOOM_API_KEY  = "example",
-        ADMP_API_HOST = "example"
+        DB_TABLE_NAME = "example"
       }
       path_name = "api/v1/first"
     },
@@ -26,9 +24,7 @@ locals {
       description   = "Second for Lambda"
       variables = {
         ENV           = var.environment,
-        DB_TABLE_NAME = "example",
-        ZOOM_API_KEY  = "example",
-        ADMP_API_HOST = "example"
+        DB_TABLE_NAME = "example"
       }
       path_name = "api/v1/second"
     },
@@ -39,9 +35,7 @@ locals {
       description   = "Third for Lambda"
       variables = {
         ENV           = var.environment,
-        DB_TABLE_NAME = "example",
-        ZOOM_API_KEY  = "example",
-        ADMP_API_HOST = "example"
+        DB_TABLE_NAME = "example"
       }
       path_name = "api/v1/third"
     }
