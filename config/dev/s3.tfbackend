@@ -1,0 +1,4 @@
+bucket  = "app-infra-tfstate"
+region  = "ap-northeast-1"
+key     = "app_infra/develop/terraform.tfstate"
+encrypt = true
