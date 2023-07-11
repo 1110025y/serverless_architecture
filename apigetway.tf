@@ -20,6 +20,29 @@ resource "aws_apigatewayv2_api" "api_integration" {
   protocol_type = "HTTP"
 
   body = data.template_file.api_integration.rendered
+
+  cors_configuration {
+    allow_credentials = false
+    allow_headers = [
+      "*",
+    ]
+    allow_methods = [
+      "DELETE",
+      "GET",
+      "HEAD",
+      "OPTIONS",
+      "POST",
+      "PUT",
+    ]
+
+    allow_origins = [
+      "*",
+    ]
+    expose_headers = [
+      "*",
+    ]
+    max_age = 3600
+  }
 }
 
 // Swagger File の作成 //
